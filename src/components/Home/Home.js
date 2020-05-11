@@ -1,15 +1,13 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import AuthHome from './AuthHome'
+import UnauthHome from './UnauthHome'
 
 const authenticatedOptions = (
-  <Fragment>
-    <h2>User is authenticated</h2>
-  </Fragment>
+  <AuthHome />
 )
 
 const unauthenticatedOptions = (
-  <Fragment>
-    <h2>User is NOT authenticated</h2>
-  </Fragment>
+  <UnauthHome />
 )
 
 const Home = ({ user }) => (

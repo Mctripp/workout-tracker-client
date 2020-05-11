@@ -2,6 +2,11 @@ Client end for capstone
 
 [Workout tracker Express API](https://github.com/Mctripp/workout-tracker-express-api)
 
+# Tech Used
+[React Big Calendar](https://www.npmjs.com/package/react-big-calendar)
+[Moment.js](https://momentjs.com/)
+[React-datetime](https://www.npmjs.com/package/react-datetime)
+
 # User Stories
 Users should be able to:
 - Sign up, in, out, and change their password

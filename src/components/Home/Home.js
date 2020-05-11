@@ -1,6 +1,7 @@
 import React from 'react'
 import AuthHome from './AuthHome'
 import UnauthHome from './UnauthHome'
+import Container from 'react-bootstrap/Container'
 
 const authenticatedOptions = (
   <AuthHome />
@@ -11,9 +12,9 @@ const unauthenticatedOptions = (
 )
 
 const Home = ({ user }) => (
-  <div>
+  <Container fluid>
     { user ? authenticatedOptions : unauthenticatedOptions }
-  </div>
+  </Container>
 )
 
 export default Home

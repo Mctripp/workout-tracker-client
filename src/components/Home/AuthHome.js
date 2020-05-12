@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Accordion from 'react-bootstrap/Accordion'
+import { Col, Row, Accordion } from 'react-bootstrap'
 import AccordionCard from './../shared/AccordionCard'
 import CreateWorkout from './../CreateWorkout/CreateWorkout'
 

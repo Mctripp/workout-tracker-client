@@ -3,8 +3,10 @@ import AuthHome from './AuthHome'
 import UnauthHome from './UnauthHome'
 import Container from 'react-bootstrap/Container'
 
-const authenticatedOptions = (
-  <AuthHome />
+const authenticatedOptions = (user) => (
+  <AuthHome
+    user={user}
+  />
 )
 
 const unauthenticatedOptions = (
@@ -13,7 +15,7 @@ const unauthenticatedOptions = (
 
 const Home = ({ user }) => (
   <Container fluid>
-    { user ? authenticatedOptions : unauthenticatedOptions }
+    { user ? authenticatedOptions(user) : unauthenticatedOptions }
   </Container>
 )
 

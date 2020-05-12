@@ -3,14 +3,16 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Accordion from 'react-bootstrap/Accordion'
 import AccordionCard from './../shared/AccordionCard'
-import CreateNewWorkout from './../CreateWorkout/CreateWorkoutButton'
+import CreateWorkout from './../CreateWorkout/CreateWorkout'
 
 const AuthHome = ({ user }) => {
   return (
     <Fragment>
       The user is signed in!
       <Row>
-        <CreateNewWorkout/>
+        <CreateWorkout
+          user={user}
+        />
       </Row>
       <Row>
         <Col>

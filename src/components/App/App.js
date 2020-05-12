@@ -7,6 +7,7 @@ import Header from '../Header/Header'
 import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
+import ViewWorkouts from '../ViewWorkouts/ViewWorkouts'
 import Home from '../Home/Home'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
@@ -43,11 +44,14 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <Route exact path='/' render={() => (
+          <Route exact path='/home' render={() => (
             <Home
               user = { user }
             />
           )}/>
+          <Route exact path='/workouts' render={() => (
+            <ViewWorkouts user={ user }/>
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />

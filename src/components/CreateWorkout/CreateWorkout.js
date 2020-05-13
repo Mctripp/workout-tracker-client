@@ -8,7 +8,6 @@ const CreateWorkout = ({ user }) => {
   return (
     <Fragment>
       <Button variant="primary" onClick={() => {
-        console.log(user)
         setModalShow(true)
       }
       }>

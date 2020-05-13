@@ -20,9 +20,8 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => (
 
     <label>Date & Time</label>
     <input
-      type="date"
-      placeholder="YYYY-MM-DDTHH:mm:ss"
-      value={workout.date_time}
+      type="datetime-local"
+      value={workout.date_time.substring(24)}
       name="date_time"
       onChange={handleChange}
     />

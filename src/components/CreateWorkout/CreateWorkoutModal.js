@@ -37,11 +37,7 @@ const CreateWorkoutModal = (props) => {
       method: 'POST',
       data: { workout }
     })
-      // .then(() => msgAlert({
-      //   heading: 'Create Workout Success',
-      //   message: messages.createWorkoutSuccess,
-      //   variant: 'success'
-      // }))
+      .then(() => props.onHide())
       .catch(console.error)
   }
   return (

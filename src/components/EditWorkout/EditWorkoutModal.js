@@ -50,7 +50,7 @@ const EditWorkoutModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <WorkoutForm
-          workout={props.workout}
+          workout={workout}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           cancelPath='/'
@@ -58,6 +58,7 @@ const EditWorkoutModal = (props) => {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={() => { console.log(workout) }}>Print workout</Button>
       </Modal.Footer>
     </Modal>
   )

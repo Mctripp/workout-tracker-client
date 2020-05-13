@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
+import EditWorkout from './../EditWorkout/EditWorkout'
 
 const ViewWorkout = (props) => {
   const [workout, setWorkout] = useState([])
@@ -46,15 +47,18 @@ const ViewWorkout = (props) => {
   }
 
   const workoutJsx = (
-    <div>
+    <Fragment>
       <h3>{workout.name}</h3>
       <ul>
         <li>Completed: {workout.isComplete ? 'Yes' : 'No'}</li>
         <li>Description: {workout.description}</li>
         <li>Date: {workout.date_time}</li>
       </ul>
+      <EditWorkout workout={workout} user={props.user} match={props.match} variant="primary">
+        Edit
+      </EditWorkout>
       <Button onClick={handleSubmit} variant='warning'>Delete</Button>
-    </div>
+    </Fragment>
   )
 
   return (

@@ -5,16 +5,14 @@ import apiUrl from './../../apiConfig'
 import axios from 'axios'
 // import messages from '../AutoDismissAlert/messages'
 
-const CreateWorkoutModal = (props) => {
+const EditWorkoutModal = (props) => {
   const [workout, setWorkout] = useState({
     name: '',
     description: '',
     date_time: '',
     isComplete: false,
-    user: props.user.email
+    user: ''
   })
-
-  // const { msgAlert } = props
 
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
@@ -27,21 +25,15 @@ const CreateWorkoutModal = (props) => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    console.log('user: ' + props.user.email)
-
     axios({
       headers: {
         'Authorization': `Token token=${props.user.token}`
       },
-      url: `${apiUrl}/workouts`,
-      method: 'POST',
+      url: `${apiUrl}/workouts/${props.match.params.id}`,
+      method: 'PATCH',
       data: { workout }
     })
-      // .then(() => msgAlert({
-      //   heading: 'Create Workout Success',
-      //   message: messages.createWorkoutSuccess,
-      //   variant: 'success'
-      // }))
+      .then(() => props.onHide())
       .catch(console.error)
   }
   return (
@@ -53,12 +45,12 @@ const CreateWorkoutModal = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Create new workout
+          Edit workout
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <WorkoutForm
-          workout={workout}
+          workout={props.workout}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           cancelPath='/'
@@ -71,4 +63,4 @@ const CreateWorkoutModal = (props) => {
   )
 }
 
-export default CreateWorkoutModal
+export default EditWorkoutModal

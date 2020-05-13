@@ -31,6 +31,11 @@ const AuthHome = ({ user }) => {
     }
   }, [])
 
+  const dateToString = (dateTime) => {
+    const newDate = new Date(dateTime)
+    return newDate.toString()
+  }
+
   const pastWorkoutsJsx = pastWorkouts.map(workout => (
     <AccordionCard
       key={workout._id}
@@ -39,7 +44,7 @@ const AuthHome = ({ user }) => {
       bodyContent={(
         <div>
           <p>Description: {workout.description}</p>
-          <p>When: {workout.date_time}</p>
+          <p>When: {dateToString(workout.date_time)}</p>
         </div>
       )}
     />
@@ -53,7 +58,7 @@ const AuthHome = ({ user }) => {
       bodyContent={(
         <div>
           <p>Description: {workout.description}</p>
-          <p>When: {workout.date_time}</p>
+          <p>When: {dateToString(workout.date_time)}</p>
         </div>
       )}
     />

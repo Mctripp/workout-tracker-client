@@ -61,7 +61,6 @@ const AuthHome = ({ user }) => {
 
   return (
     <Fragment>
-      The user is signed in!
       <Row>
         <CreateWorkout
           user={user}
@@ -69,13 +68,13 @@ const AuthHome = ({ user }) => {
       </Row>
       <Row>
         <Col>
-          Upcoming workouts will go here
+          Upcoming workouts
           <Accordion>
             {upcomingWorkoutsJsx}
           </Accordion>
         </Col>
         <Col>
-          Completed workouts will go here
+          Past workouts
           <Accordion>
             {pastWorkoutsJsx}
           </Accordion>

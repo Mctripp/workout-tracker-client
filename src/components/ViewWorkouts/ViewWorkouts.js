@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
 
 const ViewWorkouts = ({ user }) => {
   const [workouts, setWorkouts] = useState([])
+
+  if (!user) {
+    return <Redirect to='/home' />
+  }
 
   useEffect(() => {
     if (user) {

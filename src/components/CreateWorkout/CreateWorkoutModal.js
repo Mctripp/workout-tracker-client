@@ -3,6 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 import CreateWorkoutForm from './CreateWorkoutForm'
 import apiUrl from './../../apiConfig'
 import axios from 'axios'
+// import messages from '../AutoDismissAlert/messages'
 
 const CreateWorkoutModal = (props) => {
   const [workout, setWorkout] = useState({
@@ -13,9 +14,7 @@ const CreateWorkoutModal = (props) => {
     user: props.user.email
   })
 
-  // axios(`${apiUrl}/movies/${props.match.params.id}`)
-  //   .then(res => setMovie(res.data.movie))
-  //   .catch(console.error)
+  // const { msgAlert } = props
 
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
@@ -38,7 +37,11 @@ const CreateWorkoutModal = (props) => {
       method: 'POST',
       data: { workout }
     })
-      .then((res) => console.log(res))
+      // .then(() => msgAlert({
+      //   heading: 'Create Workout Success',
+      //   message: messages.createWorkoutSuccess,
+      //   variant: 'success'
+      // }))
       .catch(console.error)
   }
   return (

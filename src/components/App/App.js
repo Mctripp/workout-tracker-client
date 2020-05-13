@@ -8,6 +8,7 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ViewWorkouts from '../ViewWorkouts/ViewWorkouts'
+import ViewWorkout from '../ViewWorkout/ViewWorkout'
 import Home from '../Home/Home'
 import ChangePassword from '../ChangePassword/ChangePassword'
 
@@ -51,6 +52,9 @@ class App extends Component {
           )}/>
           <Route exact path='/workouts' render={() => (
             <ViewWorkouts user={ user }/>
+          )} />
+          <Route exact path='/workouts/:id' render={({ match }) => (
+            <ViewWorkout user={ user } match={ match }/>
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />

@@ -38,8 +38,6 @@ const CreateWorkoutModal = ({ msgAlert, user, show, onHide }) => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    console.log('user: ' + user.email)
-
     axios({
       headers: {
         'Authorization': `Token token=${user.token}`

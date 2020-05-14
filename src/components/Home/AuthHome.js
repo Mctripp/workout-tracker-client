@@ -12,7 +12,6 @@ const AuthHome = ({ user, msgAlert }) => {
 
   const populateWorkouts = () => {
     const today = new Date().toISOString()
-    console.log(today)
     axios({
       headers: {
         'Authorization': `Token token=${user.token}`
@@ -43,8 +42,8 @@ const AuthHome = ({ user, msgAlert }) => {
       headerContent={workout.name}
       bodyContent={(
         <div>
-          <p>Description: {workout.description}</p>
-          <p>When: {moment(workout.date_time).format('LLLL')}</p>
+          <p><b>What: </b>{workout.description}</p>
+          <p><b>When: </b>{moment(workout.date_time).format('LLLL')}</p>
         </div>
       )}
     />
@@ -57,7 +56,7 @@ const AuthHome = ({ user, msgAlert }) => {
       headerContent={workout.name}
       bodyContent={(
         <div>
-          <p>Description: {workout.description}</p>
+          <p>What: {workout.description}</p>
           <p>When: {moment(workout.date_time).format('LLLL')}</p>
         </div>
       )}

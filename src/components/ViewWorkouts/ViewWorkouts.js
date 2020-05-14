@@ -33,7 +33,7 @@ const ViewWorkouts = ({ user }) => {
           <Link to={`/workouts/${workout._id}`}>{workout.name}</Link>
         </Card.Title>
         <Card.Text>
-          {workout.description.substring(0, 20)}...<br></br>
+          <b>What: </b>{workout.description.substring(0, 30)}...<br></br>
           <b>When: </b>{moment(workout.date_time).format('LLLL')}
         </Card.Text>
       </Card.Body>

@@ -26,7 +26,6 @@ const ViewWorkout = (props) => {
   }
 
   useEffect(() => {
-    console.log(props)
     if (props.user) {
       populateWorkout()
     }

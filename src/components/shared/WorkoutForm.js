@@ -12,7 +12,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => (
     />
 
     <label>Description</label>
-    <input
+    <textarea
       placeholder="Description"
       value={workout.description}
       name="description"

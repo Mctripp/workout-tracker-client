@@ -3,13 +3,14 @@ import { Modal, Button } from 'react-bootstrap'
 import WorkoutForm from './../shared/WorkoutForm'
 import apiUrl from './../../apiConfig'
 import axios from 'axios'
+import moment from 'moment'
 // import messages from '../AutoDismissAlert/messages'
 
 const CreateWorkoutModal = (props) => {
   const [workout, setWorkout] = useState({
     name: '',
     description: '',
-    date_time: '',
+    date_time: moment(Date()).format('YYYY-MM-DDTHH:mm'),
     isComplete: false,
     user: props.user.email
   })
@@ -20,17 +21,12 @@ const CreateWorkoutModal = (props) => {
     let updatedField = { [event.target.name]: event.target.value }
     if (event.target.name === 'date') {
       let updateValue = workout.date_time
-      console.log(workout.date_time)
-      console.log('substring: ' + updateValue.substring(10))
       updateValue = event.target.value + updateValue.substring(10)
-      console.log(updateValue)
       updatedField = { date_time: updateValue }
     }
     if (event.target.name === 'time') {
       let updateValue = workout.date_time
-      console.log('substring: ' + updateValue.substring(0, 10))
-      updateValue = updateValue.substring(0, 10) + event.target.value
-      console.log(updateValue)
+      updateValue = updateValue.substring(0, 11) + event.target.value
       updatedField = { date_time: updateValue }
     }
 

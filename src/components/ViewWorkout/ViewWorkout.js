@@ -63,7 +63,7 @@ const ViewWorkout = (props) => {
 
   const workoutJsx = (
     <Card style={cardStyle}>
-      <Card.Header>{workout.name}</Card.Header>
+      <Card.Header><h2>{workout.name}</h2></Card.Header>
       <Card.Text>
         <b>Description: </b>{workout.description}<br></br>
         <b>Date: </b>{moment(workout.date_time).format('LLLL')}<br></br>

@@ -64,18 +64,30 @@ const AuthHome = ({ user }) => {
     />
   ))
 
+  const h3Style = {
+    padding: '10px'
+  }
+
+  const rowStyle = {
+    marginTop: '5px'
+  }
+
+  const rowButtonStyle = {
+    marginLeft: '15px'
+  }
+
   return (
     <Fragment>
-      <Row>
+      <Row style={rowButtonStyle}>
         <CreateWorkout
           user={user}
           onModalHide={populateWorkouts}
         />
       </Row>
-      <Row>
+      <Row style={rowStyle}>
         <Col>
           <Card>
-            Upcoming workouts
+            <h3 style={h3Style}>Upcoming workouts</h3>
             <Accordion>
               {upcomingWorkoutsJsx}
             </Accordion>
@@ -83,7 +95,7 @@ const AuthHome = ({ user }) => {
         </Col>
         <Col>
           <Card>
-            Past workouts
+            <h3 style={h3Style}>Past workouts</h3>
             <Accordion>
               {pastWorkoutsJsx}
             </Accordion>

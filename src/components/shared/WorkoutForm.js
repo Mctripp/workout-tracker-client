@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 
 const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
@@ -18,11 +19,19 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => (
       onChange={handleChange}
     />
 
-    <label>Date & Time</label>
+    <label>Date</label>
     <input
-      type="datetime-local"
-      value={workout.date_time.substring(24)}
-      name="date_time"
+      type="date"
+      value={moment(workout.date_time).format('YYYY-MM-DD')}
+      name="date"
+      onChange={handleChange}
+    />
+
+    <label>Time</label>
+    <input
+      type="time"
+      value={moment(workout.date_time).format('HH:mm')}
+      name="time"
       onChange={handleChange}
     />
 

@@ -13,14 +13,14 @@ const EditWorkout = ({ match, workout, user }) => {
       }>
         Edit
       </Button>
-
-      <EditWorkoutModal
+      {workout.name && <EditWorkoutModal
         match={match}
         workout={workout}
         user={user}
         show={modalShow}
         onHide={() => setModalShow(false)}
-      />
+      />}
+      <Button onClick={() => { console.log(workout) }}>Print workout</Button>
     </Fragment>
   )
 }

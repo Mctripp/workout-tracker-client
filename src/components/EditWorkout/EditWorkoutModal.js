@@ -7,11 +7,11 @@ import axios from 'axios'
 
 const EditWorkoutModal = (props) => {
   const [workout, setWorkout] = useState({
-    name: '',
-    description: '',
-    date_time: '',
-    isComplete: false,
-    user: ''
+    name: props.workout.name,
+    description: props.workout.description,
+    date_time: props.workout.date_time,
+    isComplete: props.workout.isComplete,
+    user: props.workout.user
   })
 
   const handleChange = event => {

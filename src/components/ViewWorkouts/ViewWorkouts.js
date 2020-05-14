@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
+import moment from 'moment'
 
 const ViewWorkouts = ({ user }) => {
   const [workouts, setWorkouts] = useState([])
@@ -26,7 +27,7 @@ const ViewWorkouts = ({ user }) => {
 
   const workoutsJsx = workouts.map(workout => (
     <li key={workout._id}>
-      <Link to={`/workouts/${workout._id}`}>{workout.name}: {workout.date_time}</Link>
+      <Link to={`/workouts/${workout._id}`}>{workout.name}: {moment(workout.date_time).format('LLLL')}</Link>
     </li>
   ))
 

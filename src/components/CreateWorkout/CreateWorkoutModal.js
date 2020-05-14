@@ -17,7 +17,22 @@ const CreateWorkoutModal = (props) => {
   // const { msgAlert } = props
 
   const handleChange = event => {
-    const updatedField = { [event.target.name]: event.target.value }
+    let updatedField = { [event.target.name]: event.target.value }
+    if (event.target.name === 'date') {
+      let updateValue = workout.date_time
+      console.log(workout.date_time)
+      console.log('substring: ' + updateValue.substring(10))
+      updateValue = event.target.value + updateValue.substring(10)
+      console.log(updateValue)
+      updatedField = { date_time: updateValue }
+    }
+    if (event.target.name === 'time') {
+      let updateValue = workout.date_time
+      console.log('substring: ' + updateValue.substring(0, 10))
+      updateValue = updateValue.substring(0, 10) + event.target.value
+      console.log(updateValue)
+      updatedField = { date_time: updateValue }
+    }
 
     const editedWorkout = Object.assign({}, workout, updatedField)
 

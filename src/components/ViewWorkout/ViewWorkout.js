@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
 import EditWorkout from './../EditWorkout/EditWorkout'
+import moment from 'moment'
 
 const ViewWorkout = (props) => {
   const [workout, setWorkout] = useState([])
@@ -52,7 +53,7 @@ const ViewWorkout = (props) => {
       <ul>
         <li>Completed: {workout.isComplete ? 'Yes' : 'No'}</li>
         <li>Description: {workout.description}</li>
-        <li>Date: {workout.date_time}</li>
+        <li>Date: {moment(workout.date_time).format('LLLL')}</li>
       </ul>
       <EditWorkout workout={workout} user={props.user} match={props.match} variant="primary">
         Edit

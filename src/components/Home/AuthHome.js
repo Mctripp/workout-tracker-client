@@ -4,6 +4,7 @@ import apiUrl from './../../apiConfig'
 import { Col, Row, Accordion } from 'react-bootstrap'
 import AccordionCard from './../shared/AccordionCard'
 import CreateWorkout from './../CreateWorkout/CreateWorkout'
+import moment from 'moment'
 
 const AuthHome = ({ user }) => {
   const [upcomingWorkouts, setUpcomingWorkouts] = useState([])
@@ -31,11 +32,6 @@ const AuthHome = ({ user }) => {
     }
   }, [])
 
-  const dateToString = (dateTime) => {
-    const newDate = new Date(dateTime)
-    return newDate.toString()
-  }
-
   const pastWorkoutsJsx = pastWorkouts.map(workout => (
     <AccordionCard
       key={workout._id}
@@ -44,7 +40,7 @@ const AuthHome = ({ user }) => {
       bodyContent={(
         <div>
           <p>Description: {workout.description}</p>
-          <p>When: {dateToString(workout.date_time)}</p>
+          <p>When: {moment(workout.date_time).format('LLLL')}</p>
         </div>
       )}
     />
@@ -58,7 +54,7 @@ const AuthHome = ({ user }) => {
       bodyContent={(
         <div>
           <p>Description: {workout.description}</p>
-          <p>When: {dateToString(workout.date_time)}</p>
+          <p>When: {moment(workout.date_time).format('LLLL')}</p>
         </div>
       )}
     />

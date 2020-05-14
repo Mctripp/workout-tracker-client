@@ -31,7 +31,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => {
       />
       <br></br>
 
-      <label>Date</label>
+      <label>Date: </label>
       <input
         type="date"
         value={moment(workout.date_time).format('YYYY-MM-DD')}
@@ -39,7 +39,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => {
         onChange={handleChange}
       />
 
-      <label>Time</label>
+      <label>Time: </label>
       <input
         type="time"
         value={moment(workout.date_time).format('HH:mm')}

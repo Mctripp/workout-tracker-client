@@ -11,17 +11,21 @@ const ViewWorkout = (props) => {
   const [workout, setWorkout] = useState([])
   const [deleted, setDeleted] = useState(false)
 
+  const populateWorkout = () => {
+    axios({
+      headers: {
+        'Authorization': `Token token=${props.user.token}`
+      },
+      url: `${apiUrl}/workouts/${props.match.params.id}`
+    })
+      .then(res => setWorkout(res.data.workout))
+      .catch(console.error)
+  }
+
   useEffect(() => {
     console.log(props)
     if (props.user) {
-      axios({
-        headers: {
-          'Authorization': `Token token=${props.user.token}`
-        },
-        url: `${apiUrl}/workouts/${props.match.params.id}`
-      })
-        .then(res => setWorkout(res.data.workout))
-        .catch(console.error)
+      populateWorkout()
     }
   }, [])
 
@@ -55,7 +59,7 @@ const ViewWorkout = (props) => {
         <li>Description: {workout.description}</li>
         <li>Date: {moment(workout.date_time).format('LLLL')}</li>
       </ul>
-      <EditWorkout workout={workout} user={props.user} match={props.match} variant="primary">
+      <EditWorkout workout={workout} user={props.user} match={props.match} variant="primary" onModalHide={populateWorkout}>
         Edit
       </EditWorkout>
       <Button onClick={handleSubmit} variant='warning'>Delete</Button>

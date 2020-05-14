@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
-import { Col, Row, Accordion } from 'react-bootstrap'
+import { Col, Row, Accordion, Card } from 'react-bootstrap'
 import AccordionCard from './../shared/AccordionCard'
 import CreateWorkout from './../CreateWorkout/CreateWorkout'
 import moment from 'moment'
@@ -10,25 +10,29 @@ const AuthHome = ({ user }) => {
   const [upcomingWorkouts, setUpcomingWorkouts] = useState([])
   const [pastWorkouts, setPastWorkouts] = useState([])
 
+  const populateWorkouts = () => {
+    const today = new Date().toISOString()
+    console.log(today)
+    axios({
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      },
+      url: `${apiUrl}/workouts`
+    })
+      .then(res => {
+        setUpcomingWorkouts(res.data.workouts.filter(workout => {
+          return workout.date_time > today
+        }))
+        setPastWorkouts(res.data.workouts.filter(workout => {
+          return workout.date_time < today
+        }))
+      })
+      .catch(console.error)
+  }
+
   useEffect(() => {
     if (user) {
-      const today = new Date().toISOString()
-      console.log(today)
-      axios({
-        headers: {
-          'Authorization': `Token token=${user.token}`
-        },
-        url: `${apiUrl}/workouts`
-      })
-        .then(res => {
-          setUpcomingWorkouts(res.data.workouts.filter(workout => {
-            return workout.date_time > today
-          }))
-          setPastWorkouts(res.data.workouts.filter(workout => {
-            return workout.date_time < today
-          }))
-        })
-        .catch(console.error)
+      populateWorkouts()
     }
   }, [])
 
@@ -65,20 +69,25 @@ const AuthHome = ({ user }) => {
       <Row>
         <CreateWorkout
           user={user}
+          onModalHide={populateWorkouts}
         />
       </Row>
       <Row>
         <Col>
-          Upcoming workouts
-          <Accordion>
-            {upcomingWorkoutsJsx}
-          </Accordion>
+          <Card>
+            Upcoming workouts
+            <Accordion>
+              {upcomingWorkoutsJsx}
+            </Accordion>
+          </Card>
         </Col>
         <Col>
-          Past workouts
-          <Accordion>
-            {pastWorkoutsJsx}
-          </Accordion>
+          <Card>
+            Past workouts
+            <Accordion>
+              {pastWorkoutsJsx}
+            </Accordion>
+          </Card>
         </Col>
       </Row>
     </Fragment>

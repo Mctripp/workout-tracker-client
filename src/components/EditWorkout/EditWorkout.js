@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
 import EditWorkoutModal from './EditWorkoutModal'
 
-const EditWorkout = ({ match, workout, user }) => {
+const EditWorkout = ({ match, workout, user, onModalHide }) => {
   const [modalShow, setModalShow] = React.useState(false)
 
   return (
@@ -18,7 +18,10 @@ const EditWorkout = ({ match, workout, user }) => {
         workout={workout}
         user={user}
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={() => {
+          setModalShow(false)
+          onModalHide()
+        }}
       />}
       <Button onClick={() => { console.log(workout) }}>Print workout</Button>
     </Fragment>

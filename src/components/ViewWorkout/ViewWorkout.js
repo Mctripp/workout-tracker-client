@@ -8,6 +8,7 @@ import axios from 'axios'
 import apiUrl from './../../apiConfig'
 import EditWorkout from './../EditWorkout/EditWorkout'
 import moment from 'moment'
+import messages from './../AutoDismissAlert/messages'
 
 const ViewWorkout = (props) => {
   const [workout, setWorkout] = useState([])
@@ -50,7 +51,20 @@ const ViewWorkout = (props) => {
       method: 'DELETE'
     })
       .then(() => setDeleted(true))
+      .then(() => props.msgAlert({
+        heading: 'Delete Workout Success',
+        message: messages.deleteWorkoutSuccess,
+        variant: 'success'
+      }))
       .catch(console.error)
+  }
+
+  const editSubmitMsg = () => {
+    props.msgAlert({
+      heading: 'Edit Workout Success',
+      message: messages.editWorkoutSuccess,
+      variant: 'success'
+    })
   }
 
   const cardStyle = {
@@ -70,7 +84,7 @@ const ViewWorkout = (props) => {
         <b>Completed: </b>{workout.isComplete ? 'Yes' : 'No'}
       </Card.Text>
       <Row style={rowStyle}>
-        <EditWorkout workout={workout} user={props.user} match={props.match} variant="primary" onModalHide={populateWorkout}>
+        <EditWorkout editmsgalert={editSubmitMsg} workout={workout} user={props.user} match={props.match} variant="primary" onModalHide={populateWorkout}>
           Edit
         </EditWorkout>
         <Button onClick={handleSubmit} variant='warning'>Delete</Button>

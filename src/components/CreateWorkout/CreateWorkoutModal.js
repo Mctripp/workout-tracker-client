@@ -4,15 +4,15 @@ import WorkoutForm from './../shared/WorkoutForm'
 import apiUrl from './../../apiConfig'
 import axios from 'axios'
 import moment from 'moment'
-// import messages from '../AutoDismissAlert/messages'
+import messages from '../AutoDismissAlert/messages'
 
-const CreateWorkoutModal = (props) => {
+const CreateWorkoutModal = ({ msgAlert, user, show, onHide }) => {
   const [workout, setWorkout] = useState({
     name: '',
     description: '',
     date_time: moment(Date()).format('YYYY-MM-DDTHH:mm'),
     isComplete: false,
-    user: props.user.email
+    user: user.email
   })
 
   // const { msgAlert } = props
@@ -38,22 +38,28 @@ const CreateWorkoutModal = (props) => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    console.log('user: ' + props.user.email)
+    console.log('user: ' + user.email)
 
     axios({
       headers: {
-        'Authorization': `Token token=${props.user.token}`
+        'Authorization': `Token token=${user.token}`
       },
       url: `${apiUrl}/workouts`,
       method: 'POST',
       data: { workout }
     })
-      .then(() => props.onHide())
+      .then(() => onHide())
+      .then(() => msgAlert({
+        heading: 'Create Workout Success',
+        message: messages.createWorkoutSuccess,
+        variant: 'success'
+      }))
       .catch(console.error)
   }
   return (
     <Modal
-      {...props}
+      show={show}
+      onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -72,7 +78,7 @@ const CreateWorkoutModal = (props) => {
         />
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   )

@@ -47,14 +47,15 @@ class App extends Component {
         <main className="container">
           <Route exact path='/home' render={() => (
             <Home
+              msgAlert={this.msgAlert}
               user = { user }
             />
           )}/>
           <Route exact path='/workouts' render={() => (
-            <ViewWorkouts user={ user }/>
+            <ViewWorkouts msgAlert={this.msgAlert} user={ user }/>
           )} />
           <Route exact path='/workouts/:id' render={({ match }) => (
-            <ViewWorkout user={ user } match={ match }/>
+            <ViewWorkout msgAlert={this.msgAlert} user={ user } match={ match }/>
           )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />

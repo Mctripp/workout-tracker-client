@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Button from 'react-bootstrap/Button'
 import CreateWorkoutModal from './CreateWorkoutModal'
 
-const CreateWorkout = ({ user, onModalHide }) => {
+const CreateWorkout = ({ user, onModalHide, msgAlert }) => {
   const [modalShow, setModalShow] = React.useState(false)
 
   return (
@@ -15,6 +15,7 @@ const CreateWorkout = ({ user, onModalHide }) => {
       </Button>
 
       <CreateWorkoutModal
+        msgAlert={msgAlert}
         user={user}
         show={modalShow}
         onHide={() => {

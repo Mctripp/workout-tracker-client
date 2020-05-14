@@ -6,7 +6,7 @@ import AccordionCard from './../shared/AccordionCard'
 import CreateWorkout from './../CreateWorkout/CreateWorkout'
 import moment from 'moment'
 
-const AuthHome = ({ user }) => {
+const AuthHome = ({ user, msgAlert }) => {
   const [upcomingWorkouts, setUpcomingWorkouts] = useState([])
   const [pastWorkouts, setPastWorkouts] = useState([])
 
@@ -82,6 +82,7 @@ const AuthHome = ({ user }) => {
         <CreateWorkout
           user={user}
           onModalHide={populateWorkouts}
+          msgAlert={msgAlert}
         />
       </Row>
       <Row style={rowStyle}>

@@ -68,7 +68,6 @@ const EditWorkoutModal = (props) => {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
-        <Button onClick={() => { console.log(workout) }}>Print workout</Button>
       </Modal.Footer>
     </Modal>
   )

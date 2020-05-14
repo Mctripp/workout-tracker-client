@@ -1,6 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import apiUrl from './../../apiConfig'
@@ -51,19 +53,29 @@ const ViewWorkout = (props) => {
       .catch(console.error)
   }
 
+  const cardStyle = {
+    padding: '10px'
+  }
+
+  const rowStyle = {
+    marginLeft: '15px'
+  }
+
   const workoutJsx = (
-    <Fragment>
-      <h3>{workout.name}</h3>
-      <ul>
-        <li>Completed: {workout.isComplete ? 'Yes' : 'No'}</li>
-        <li>Description: {workout.description}</li>
-        <li>Date: {moment(workout.date_time).format('LLLL')}</li>
-      </ul>
-      <EditWorkout workout={workout} user={props.user} match={props.match} variant="primary" onModalHide={populateWorkout}>
-        Edit
-      </EditWorkout>
-      <Button onClick={handleSubmit} variant='warning'>Delete</Button>
-    </Fragment>
+    <Card style={cardStyle}>
+      <Card.Header>{workout.name}</Card.Header>
+      <Card.Text>
+        <b>Description: </b>{workout.description}<br></br>
+        <b>Date: </b>{moment(workout.date_time).format('LLLL')}<br></br>
+        <b>Completed: </b>{workout.isComplete ? 'Yes' : 'No'}
+      </Card.Text>
+      <Row style={rowStyle}>
+        <EditWorkout workout={workout} user={props.user} match={props.match} variant="primary" onModalHide={populateWorkout}>
+          Edit
+        </EditWorkout>
+        <Button onClick={handleSubmit} variant='warning'>Delete</Button>
+      </Row>
+    </Card>
   )
 
   return (

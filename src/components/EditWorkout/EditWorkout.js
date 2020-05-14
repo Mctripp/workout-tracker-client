@@ -23,7 +23,6 @@ const EditWorkout = ({ match, workout, user, onModalHide }) => {
           onModalHide()
         }}
       />}
-      <Button onClick={() => { console.log(workout) }}>Print workout</Button>
     </Fragment>
   )
 }

@@ -23,8 +23,12 @@ const alwaysOptions = (
   </Fragment>
 )
 
+const headerStyle = {
+  marginBottom: '10px'
+}
+
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar bg="primary" variant="dark" expand="md" style={headerStyle}>
     <Navbar.Brand href="#">
       tempTitle
     </Navbar.Brand>

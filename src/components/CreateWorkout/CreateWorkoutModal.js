@@ -52,6 +52,13 @@ const CreateWorkoutModal = ({ msgAlert, user, show, onHide }) => {
         message: messages.createWorkoutSuccess,
         variant: 'success'
       }))
+      .then(() => {
+        setWorkout({
+          name: '',
+          description: '',
+          date_time: ''
+        })
+      })
       .catch(console.error)
   }
   return (

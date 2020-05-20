@@ -12,6 +12,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => {
       <label>Name</label>
       <br></br>
       <input
+        required
         placeholder="Workout name"
         value={workout.name}
         name="name"
@@ -22,6 +23,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => {
       <label>Description</label>
       <br></br>
       <textarea
+        required
         style={textareaStyle}
         rows='10'
         placeholder="Description"
@@ -33,6 +35,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => {
 
       <label>Date: </label>
       <input
+        required
         type="date"
         value={moment(workout.date_time).format('YYYY-MM-DD')}
         name="date"
@@ -41,6 +44,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange, cancelPath }) => {
 
       <label>Time: </label>
       <input
+        required
         type="time"
         value={moment(workout.date_time).format('HH:mm')}
         name="time"

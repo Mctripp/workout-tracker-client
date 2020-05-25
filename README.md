@@ -3,8 +3,8 @@
 [Workout Tracker Express API (backend)](https://github.com/Mctripp/workout-tracker-express-api)
 
 # Tech Used
-- React.js
-- Bootstrap for React
+- [React.js](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com/) for React
 - [Moment.js](https://momentjs.com/) - A library of functions and methods to simplify handling date and time
 
 # Wireframe

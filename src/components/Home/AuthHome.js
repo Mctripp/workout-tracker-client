@@ -35,6 +35,11 @@ const AuthHome = ({ user, msgAlert }) => {
     }
   }, [])
 
+  const workoutsStyle = {
+    padding: '3px',
+    background: '#8892ac'
+  }
+
   const pastWorkoutsJsx = pastWorkouts.map(workout => (
     <AccordionCard
       key={workout._id}
@@ -64,7 +69,8 @@ const AuthHome = ({ user, msgAlert }) => {
   ))
 
   const h3Style = {
-    padding: '10px'
+    padding: '10px',
+    color: '#242833'
   }
 
   const rowStyle = {
@@ -73,6 +79,10 @@ const AuthHome = ({ user, msgAlert }) => {
 
   const rowButtonStyle = {
     marginLeft: '15px'
+  }
+
+  const cardStyle = {
+    background: '#636f8e'
   }
 
   return (
@@ -86,17 +96,17 @@ const AuthHome = ({ user, msgAlert }) => {
       </Row>
       <Row style={rowStyle}>
         <Col>
-          <Card>
+          <Card style={cardStyle}>
             <h3 style={h3Style}>Upcoming workouts</h3>
-            <Accordion>
+            <Accordion style={workoutsStyle}>
               {upcomingWorkoutsJsx}
             </Accordion>
           </Card>
         </Col>
         <Col>
-          <Card>
+          <Card style={cardStyle}>
             <h3 style={h3Style}>Past workouts</h3>
-            <Accordion>
+            <Accordion style={workoutsStyle}>
               {pastWorkoutsJsx}
             </Accordion>
           </Card>

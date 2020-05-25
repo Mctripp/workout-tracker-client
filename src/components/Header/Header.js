@@ -24,13 +24,14 @@ const alwaysOptions = (
 )
 
 const headerStyle = {
-  marginBottom: '10px'
+  marginBottom: '10px',
+  backgroundColor: '#315e7c'
 }
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md" style={headerStyle}>
+  <Navbar variant="dark" expand="md" style={headerStyle}>
     <Navbar.Brand href="#/home">
-      tempTitle
+      BodyBuddy<img src='https://icongr.am/jam/luggage-f.svg'/>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

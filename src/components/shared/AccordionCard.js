@@ -1,8 +1,12 @@
 import React from 'react'
 import { Accordion, Card, Button } from 'react-bootstrap'
 
+const cardStyle = {
+  background: '#d7dbe3'
+}
+
 const AccordionCard = ({ eventKey, headerContent, bodyContent }) => (
-  <Card>
+  <Card style={cardStyle}>
     <Card.Header>
       <Accordion.Toggle as={Button} variant="link" eventKey={`${eventKey}`}>
         {headerContent}

@@ -8,6 +8,7 @@ import moment from 'moment'
 
 const ViewWorkouts = ({ user }) => {
   const [workouts, setWorkouts] = useState([])
+  const [workoutsLoaded, setWorkoutsLoaded] = useState(false)
 
   if (!user) {
     return <Redirect to='/home' />
@@ -22,6 +23,7 @@ const ViewWorkouts = ({ user }) => {
         url: `${apiUrl}/workouts`
       })
         .then(res => setWorkouts(res.data.workouts))
+        .then(setWorkoutsLoaded(true))
         .catch(console.error)
     }
   }, [])
@@ -39,14 +41,19 @@ const ViewWorkouts = ({ user }) => {
       </Card.Body>
     </Card>
   ))
-
-  return (
-    // change this to accordion
-    <Container fluid>
-      <h2>All workouts by date (descending)</h2>
-      {workoutsJsx}
-    </Container>
-  )
+  if (workoutsLoaded) {
+    return (
+      // change this to accordion
+      <Container fluid>
+        <h2>All workouts by date (descending)</h2>
+        {workoutsJsx}
+      </Container>
+    )
+  } else {
+    return (
+      <h3>Loading...</h3>
+    )
+  }
 }
 
 export default ViewWorkouts

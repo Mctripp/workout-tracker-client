@@ -9,6 +9,7 @@ import moment from 'moment'
 const AuthHome = ({ user, msgAlert }) => {
   const [upcomingWorkouts, setUpcomingWorkouts] = useState([])
   const [pastWorkouts, setPastWorkouts] = useState([])
+  const [workoutsLoaded, setWorkoutsLoaded] = useState(false)
 
   const populateWorkouts = () => {
     const today = new Date().toISOString()
@@ -26,6 +27,7 @@ const AuthHome = ({ user, msgAlert }) => {
           return workout.date_time < today
         }))
       })
+      .then(() => setWorkoutsLoaded(true))
       .catch(console.error)
   }
 
@@ -85,35 +87,41 @@ const AuthHome = ({ user, msgAlert }) => {
     background: '#636f8e'
   }
 
-  return (
-    <Fragment>
-      <Row style={rowButtonStyle}>
-        <CreateWorkout
-          user={user}
-          onModalHide={populateWorkouts}
-          msgAlert={msgAlert}
-        />
-      </Row>
-      <Row style={rowStyle}>
-        <Col>
-          <Card style={cardStyle}>
-            <h3 style={h3Style}>Upcoming workouts</h3>
-            <Accordion style={workoutsStyle}>
-              {upcomingWorkoutsJsx}
-            </Accordion>
-          </Card>
-        </Col>
-        <Col>
-          <Card style={cardStyle}>
-            <h3 style={h3Style}>Past workouts</h3>
-            <Accordion style={workoutsStyle}>
-              {pastWorkoutsJsx}
-            </Accordion>
-          </Card>
-        </Col>
-      </Row>
-    </Fragment>
-  )
+  if (workoutsLoaded) {
+    return (
+      <Fragment>
+        <Row style={rowButtonStyle}>
+          <CreateWorkout
+            user={user}
+            onModalHide={populateWorkouts}
+            msgAlert={msgAlert}
+          />
+        </Row>
+        <Row style={rowStyle}>
+          <Col>
+            <Card style={cardStyle}>
+              <h3 style={h3Style}>Upcoming workouts</h3>
+              <Accordion style={workoutsStyle}>
+                {upcomingWorkoutsJsx}
+              </Accordion>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={cardStyle}>
+              <h3 style={h3Style}>Past workouts</h3>
+              <Accordion style={workoutsStyle}>
+                {pastWorkoutsJsx}
+              </Accordion>
+            </Card>
+          </Col>
+        </Row>
+      </Fragment>
+    )
+  } else {
+    return (
+      <h3 style={h3Style}>Loading...</h3>
+    )
+  }
 }
 
 export default AuthHome

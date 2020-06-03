@@ -13,6 +13,7 @@ import messages from './../AutoDismissAlert/messages'
 const ViewWorkout = (props) => {
   const [workout, setWorkout] = useState([])
   const [deleted, setDeleted] = useState(false)
+  const [workoutLoaded, setWorkoutLoaded] = useState(false)
 
   const populateWorkout = () => {
     axios({
@@ -22,6 +23,7 @@ const ViewWorkout = (props) => {
       url: `${apiUrl}/workouts/${props.match.params.id}`
     })
       .then(res => setWorkout(res.data.workout))
+      .then(() => setWorkoutLoaded(true))
       .catch(console.error)
   }
 
@@ -90,12 +92,17 @@ const ViewWorkout = (props) => {
       </Row>
     </Card>
   )
-
-  return (
-    <Container fluid>
-      {workoutJsx}
-    </Container>
-  )
+  if (workoutLoaded) {
+    return (
+      <Container fluid>
+        {workoutJsx}
+      </Container>
+    )
+  } else {
+    return (
+      <h3>Loading...</h3>
+    )
+  }
 }
 
 export default ViewWorkout

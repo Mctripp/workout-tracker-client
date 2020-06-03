@@ -56,7 +56,7 @@ const CreateWorkoutModal = ({ msgAlert, user, show, onHide }) => {
         setWorkout({
           name: '',
           description: '',
-          date_time: ''
+          date_time: moment(Date()).format('YYYY-MM-DDTHH:mm')
         })
       })
       .catch(console.error)

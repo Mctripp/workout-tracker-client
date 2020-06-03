@@ -20,10 +20,10 @@ const AuthHome = ({ user, msgAlert }) => {
       url: `${apiUrl}/workouts`
     })
       .then(res => {
-        setUpcomingWorkouts(res.data.workouts.filter(workout => {
+        setUpcomingWorkouts(res.data.workouts === [] ? [] : res.data.workouts.filter(workout => {
           return workout.date_time > today
         }))
-        setPastWorkouts(res.data.workouts.filter(workout => {
+        setPastWorkouts(!res.data.workouts === [] ? [] : res.data.workouts.filter(workout => {
           return workout.date_time < today
         }))
       })
@@ -42,7 +42,7 @@ const AuthHome = ({ user, msgAlert }) => {
     background: '#8892ac'
   }
 
-  const pastWorkoutsJsx = pastWorkouts.map(workout => (
+  const pastWorkoutsJsx = pastWorkouts !== [] ? pastWorkouts.map(workout => (
     <AccordionCard
       key={workout._id}
       eventKey={workout._id}
@@ -54,9 +54,16 @@ const AuthHome = ({ user, msgAlert }) => {
         </div>
       )}
     />
-  ))
+  )) : (
+    <AccordionCard
+      key='0'
+      eventKey='0'
+      headerContent='You have no past workouts to display!'
+      bodyContent=':('
+    />
+  )
 
-  const upcomingWorkoutsJsx = upcomingWorkouts.map(workout => (
+  const upcomingWorkoutsJsx = upcomingWorkouts !== [] ? upcomingWorkouts.map(workout => (
     <AccordionCard
       key={workout._id}
       eventKey={workout._id}
@@ -68,7 +75,14 @@ const AuthHome = ({ user, msgAlert }) => {
         </div>
       )}
     />
-  ))
+  )) : (
+    <AccordionCard
+      key='0'
+      eventKey='0'
+      headerContent='You have no upcoming workouts to display!'
+      bodyContent=':('
+    />
+  )
 
   const h3Style = {
     padding: '10px',
@@ -90,29 +104,38 @@ const AuthHome = ({ user, msgAlert }) => {
   if (workoutsLoaded) {
     return (
       <Fragment>
-        <Row style={rowButtonStyle}>
-          <CreateWorkout
-            user={user}
-            onModalHide={populateWorkouts}
-            msgAlert={msgAlert}
-          />
-        </Row>
-        <Row style={rowStyle}>
+        <Row>
           <Col>
-            <Card style={cardStyle}>
-              <h3 style={h3Style}>Upcoming workouts</h3>
-              <Accordion style={workoutsStyle}>
-                {upcomingWorkoutsJsx}
-              </Accordion>
-            </Card>
+            <Row style={rowButtonStyle}>
+              <CreateWorkout
+                user={user}
+                onModalHide={populateWorkouts}
+                msgAlert={msgAlert}
+              />
+            </Row>
+            <Row style={rowStyle}>
+              <Col>
+                <Card style={cardStyle}>
+                  <h3 style={h3Style}>Upcoming workouts</h3>
+                  <Accordion style={workoutsStyle}>
+                    {upcomingWorkoutsJsx}
+                  </Accordion>
+                </Card>
+              </Col>
+            </Row>
+            <Row style={rowStyle}>
+              <Col>
+                <Card style={cardStyle}>
+                  <h3 style={h3Style}>Past workouts</h3>
+                  <Accordion style={workoutsStyle}>
+                    {pastWorkoutsJsx}
+                  </Accordion>
+                </Card>
+              </Col>
+            </Row>
           </Col>
           <Col>
-            <Card style={cardStyle}>
-              <h3 style={h3Style}>Past workouts</h3>
-              <Accordion style={workoutsStyle}>
-                {pastWorkoutsJsx}
-              </Accordion>
-            </Card>
+            <p>Placeholder</p>
           </Col>
         </Row>
       </Fragment>

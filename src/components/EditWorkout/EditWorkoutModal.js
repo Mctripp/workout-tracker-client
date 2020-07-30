@@ -3,7 +3,6 @@ import { Modal, Button } from 'react-bootstrap'
 import WorkoutForm from './../shared/WorkoutForm'
 import apiUrl from './../../apiConfig'
 import axios from 'axios'
-// import messages from '../AutoDismissAlert/messages'
 
 const EditWorkoutModal = (props) => {
   const [workout, setWorkout] = useState({
